@@ -20,7 +20,8 @@ class CatalogController extends Controller
 //        dump($request->all());
 //        dd('category');
         $categories = Category::all();
-        $products = Product::query()->limit(9)->get();
+        $products = Product::query()
+            ->paginate(9);
 //        dd($categories);
 
 //        foreach ($categories as $item){

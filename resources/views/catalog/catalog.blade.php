@@ -205,8 +205,8 @@
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                                <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+                                <h4 class="product-price">${{ $product->price }} <del class="product-old-price">${{ $product->old_price }}</del></h4>
                                 <div class="product-rating">
                                 </div>
                                 <div class="product-btns">
@@ -230,14 +230,15 @@
 
                 <!-- store bottom filter -->
                 <div class="store-filter clearfix">
-                    <span class="store-qty">Showing 20-100 products</span>
-                    <ul class="store-pagination">
-                        <li class="active">1</li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
+                    <span class="store-qty">Showing {{$products->perPage() * $products->currentPage() }}-{{$products->total()}} products</span>
+                    {{ $products->links() }}
+{{--                    <ul class="store-pagination">--}}
+{{--                        <li class="active">1</li>--}}
+{{--                        <li><a href="#">2</a></li>--}}
+{{--                        <li><a href="#">3</a></li>--}}
+{{--                        <li><a href="#">4</a></li>--}}
+{{--                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>--}}
+{{--                    </ul>--}}
                 </div>
                 <!-- /store bottom filter -->
             </div>
