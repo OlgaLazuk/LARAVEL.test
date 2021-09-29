@@ -40,7 +40,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->fill($request->all());
         $category->save();
-        return response(null. 201)
+        return response(null, 201)
             ->redirectToRoute('admin.categories.index');
     }
 
@@ -78,7 +78,7 @@ class CategoryController extends Controller
         $category = Category::query()->find($category);
         $category->fill($request->all());
         $category->save();
-        return response(null. 201)
+        return response(null, 201)
             ->redirectToRoute('admin.categories.index');
     }
 
