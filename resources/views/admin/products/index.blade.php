@@ -22,7 +22,7 @@
                             <tr>
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->price}}</td>
-                                <td></td>
+                                <td><a href="{{ route('admin.products.edit', ['$product' => $product -> id]) }}">Редактировать</a></td>
                             </tr>
                             @endforeach
                             </tbody>

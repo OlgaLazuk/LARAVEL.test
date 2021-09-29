@@ -40,6 +40,8 @@ class ProductController extends Controller
         $product = new Product();
         $product->fill($request->all());
         $product->save();
+        return response(null. 201)
+            ->redirectToRoute('admin.products.index');
     }
 
     /**
@@ -61,7 +63,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
@@ -73,7 +75,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product = Product::query()->find($product);
+        $product->fill($request->all());
+        $product->save();
+        return response(null. 201)
+            ->redirectToRoute('admin.products.index');
     }
 
     /**

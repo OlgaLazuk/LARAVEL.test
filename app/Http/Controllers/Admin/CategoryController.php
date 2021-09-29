@@ -40,6 +40,8 @@ class CategoryController extends Controller
         $category = new Category();
         $category->fill($request->all());
         $category->save();
+        return response(null. 201)
+            ->redirectToRoute('admin.categories.index');
     }
 
     /**
@@ -61,7 +63,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -73,7 +75,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category = Category::query()->find($category);
+        $category->fill($request->all());
+        $category->save();
+        return response(null. 201)
+            ->redirectToRoute('admin.categories.index');
     }
 
     /**
