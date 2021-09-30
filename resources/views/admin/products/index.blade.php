@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <h2>Bordered with Striped Rows</h2>
                     <div class="table-responsive">
-                        <a href="{{ route('admin.products.create') }}" class="btn btn-info">Добавить товар</a>
+                        <a href="{{ route('admin.products.create')  }}" class="btn btn-info">Добавить товар</a>
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                             <tr>
@@ -22,7 +22,7 @@
                             <tr>
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->price}}</td>
-                                <td><a href="{{ route('admin.products.edit', ['$product' => $product -> id]) }}">Редактировать</a></td>
+                                <td><a href="{{ route('admin.products.edit', ['product' => $product -> id]) }}">Редактировать</a></td>
                             </tr>
                             @endforeach
                             </tbody>

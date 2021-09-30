@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -35,12 +36,12 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
         $category = new Category();
         $category->fill($request->all());
         $category->save();
-        return response(null, 201)
+        return response()
             ->redirectToRoute('admin.categories.index');
     }
 
@@ -78,7 +79,7 @@ class CategoryController extends Controller
         $category = Category::query()->find($category);
         $category->fill($request->all());
         $category->save();
-        return response(null, 201)
+        return response()
             ->redirectToRoute('admin.categories.index');
     }
 

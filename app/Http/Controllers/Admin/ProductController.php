@@ -40,7 +40,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->fill($request->all());
         $product->save();
-        return response(null, 201)
+        return response()
             ->redirectToRoute('admin.products.index');
     }
 
@@ -75,10 +75,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product = Product::query()->find($product);
+//        $product = Product::query()->find($product);
         $product->fill($request->all());
         $product->save();
-        return response(null, 201)
+        return response()
             ->redirectToRoute('admin.products.index');
     }
 
