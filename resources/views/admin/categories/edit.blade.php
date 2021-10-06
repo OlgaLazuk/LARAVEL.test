@@ -7,7 +7,7 @@
                @method('put')
                 @csrf
                 <input type="text" name="name" value="{{ $category->name }}">
-                <input type="text" name="title" value="{{ $category->title }}>
+                <input type="text" name="title" value="{{ $category->title }}">
                 <button type="submit">Save</button>
             </form>
         </div>

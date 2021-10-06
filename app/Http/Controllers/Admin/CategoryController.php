@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+//        dump(\Request::route());
         $categories = Category::all();
        return view('admin.categories.index', compact('categories'));
     }
@@ -32,15 +34,21 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateCategoryRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+
+//        dd($request->all());
+//        $request -> validate([
+//           'name'=>['required'],
+//            'title'=>['required']
+//        ]);
         $category = new Category();
         $category->fill($request->all());
         $category->save();
-        return response(null, 201)
+        return response()
             ->redirectToRoute('admin.categories.index');
     }
 
@@ -69,16 +77,16 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Category $category)
     {
-        $category = Category::query()->find($category);
+//       $category = Category::query()->find($category);
         $category->fill($request->all());
         $category->save();
-        return response(null, 201)
+        return response()
             ->redirectToRoute('admin.categories.index');
     }
 

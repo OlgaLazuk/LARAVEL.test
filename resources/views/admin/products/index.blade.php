@@ -6,6 +6,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
+
                     <h2>Bordered with Striped Rows</h2>
                     <div class="table-responsive">
                         <a href="{{ route('admin.products.create') }}" class="btn btn-info">Добавить товар</a>
@@ -14,7 +15,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Price</th>
-                                <th>Old price</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -22,7 +23,7 @@
                             <tr>
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->price}}</td>
-                                <td><a href="{{ route('admin.products.edit', ['$product' => $product -> id]) }}">Редактировать</a></td>
+                                <td><a href="{{ route('admin.products.edit', ['product' => $product]) }}">Редактировать</a></td>
                             </tr>
                             @endforeach
                             </tbody>
