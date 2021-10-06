@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Middleware\CheckDate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,10 +34,13 @@ Route::get('/catalog/{category}/{product}', [CatalogController::class, 'product'
 
 Route::get('/catalog/{category}', [CatalogController::class, 'category'])->name('catalog_category');
 
-Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog')
+->middleware([CheckDate::class]);
 
 
-Route::prefix('adm')->name('admin.')->group(function (){
+Route::prefix('adm')->name('admin.')
+//    ->middleware([CheckDate::class])
+    ->group(function (){
     Route::view('/', 'admin.dashboard');
     Route::resources([
         'categories' => CategoryController::class,

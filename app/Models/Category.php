@@ -11,15 +11,11 @@ class Category extends Model
 
     protected $fillable = ['name', 'title'];
 
-<<<<<<< HEAD
+
     public function getRouteKeyName()
     {
         return 'name';
     }
-=======
-//  public function getRouteKeyName()
-//    {
-//       return 'name';
-//    }
->>>>>>> origin/master
+
+
 }
