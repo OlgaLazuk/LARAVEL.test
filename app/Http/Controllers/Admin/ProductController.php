@@ -39,6 +39,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
 //        $product = new Product();
 //        $product->fill($request->all());
 //        $product->save();
@@ -60,6 +61,13 @@ class ProductController extends Controller
 //Загрузка данных(изображений)-хорошая практика
         \Storage::putFile('test_upload', $request->file('photo'));
 
+=======
+        $product = new Product();
+        $product->fill($request->all());
+        $product->save();
+        return response()
+            ->redirectToRoute('admin.products.index');
+>>>>>>> origin/master
     }
 
     /**

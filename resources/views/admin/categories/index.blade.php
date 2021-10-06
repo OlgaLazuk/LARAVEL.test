@@ -22,7 +22,11 @@
                             <tr>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->title}}</td>
+<<<<<<< HEAD
                                 <td><a href="{{ route('admin.categories.edit', ['category' => $category]) }}">Редактировать</a></td>
+=======
+                                <td><a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">Редактировать</a></td>
+>>>>>>> origin/master
                             </tr>
                             @endforeach
                             </tbody>
