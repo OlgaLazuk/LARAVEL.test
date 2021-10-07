@@ -167,7 +167,7 @@
 
             <!-- STORE -->
             <div id="store" class="col-md-9">
-                <h1>{{ $category->title }}</h1>
+                <h1>{{ $category->title ?? 'Каталог товаров' }}</h1>
 
                 <!-- store top filter -->
                 <div class="store-filter clearfix">
@@ -201,7 +201,7 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="product">
                             <div class="product-img">
-                                <img src="{{asset('/img/product08.png')}}" alt="">
+                                <img src="{{ $product->pagePhoto }}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>

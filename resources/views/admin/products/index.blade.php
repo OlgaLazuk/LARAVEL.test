@@ -20,15 +20,16 @@
                             </thead>
                             <tbody>
                             @foreach($products as $product)
-                            <tr>
-                                <td>{{$product->name}}</td>
-                                <td>{{$product->price}}</td>
-<<<<<<< HEAD
-                                <td><a href="{{ route('admin.products.edit', ['product' => $product]) }}">Редактировать</a></td>
-=======
-                                <td><a href="{{ route('admin.products.edit', ['product' => $product -> id]) }}">Редактировать</a></td>
->>>>>>> origin/master
-                            </tr>
+                                <tr>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->price}}</td>
+
+                                    <td><a href="{{ route('admin.products.edit', ['product' => $product]) }}">Редактировать</a>
+                                    </td>
+
+                                    <td><a href="{{ route('admin.products.edit', ['product' => $product -> id]) }}">Редактировать</a>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

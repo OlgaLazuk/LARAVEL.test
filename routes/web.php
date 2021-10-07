@@ -34,8 +34,7 @@ Route::get('/catalog/{category}/{product}', [CatalogController::class, 'product'
 
 Route::get('/catalog/{category}', [CatalogController::class, 'category'])->name('catalog_category');
 
-Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog')
-->middleware([CheckDate::class]);
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
 
 
 Route::prefix('adm')->name('admin.')

@@ -10,15 +10,22 @@ class CatalogController extends Controller
 {
     public function index(Request $request)
     {
-//        dd($request->all());
-        return view('catalog.catalog');
+        $categories = Category::all();
+        $products = Product::query()
+            ->orderBy('id', 'desc')
+            ->paginate();
+
+        return view('catalog.catalog',
+            compact('categories', 'products')
+        );
+
     }
 
-    public function category(Request $request,Category $category)
+    public function category(Request $request, Category $category)
     {
 //        $category = Category::find($category);
 //        dump($request->all());
-//        dd('category');
+//        dd($category);
         $categories = Category::all();
         $products = Product::query()->inRandomOrder()
             ->paginate(10);
