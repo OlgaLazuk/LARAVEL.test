@@ -10,6 +10,7 @@
             <div class="row">
 @dump($errors->all())
                 <div class="col-md-12">
+                    <span class="heading">РЕГИСТРАЦИЯ</span>
                     <form action="{{ route('registration')}}" method="post">
 
 
@@ -18,10 +19,12 @@
                             <label>name</label>
                             <input name="name" type="text" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label>email</label>
                             <input name="email" type="text" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label>password</label>
                             <input name="password" type="password" class="form-control">

@@ -6,7 +6,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Bordered with Striped Rows</h2>
+                    <h2>ДОБАВЛЕНИЕ И РЕДАКТИРОВАНИЕ КАТЕГОРИЙ ТОВАРОВ (tables categories)</h2>
                     <div class="table-responsive">
                         <a href="{{ route('admin.categories.create') }}" class="btn btn-info">Добавить категорию</a>
                         <table class="table table-bordered table-hover table-striped">
@@ -22,11 +22,9 @@
                             <tr>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->title}}</td>
-<<<<<<< HEAD
+
                                 <td><a href="{{ route('admin.categories.edit', ['category' => $category]) }}">Редактировать</a></td>
-=======
-                                <td><a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">Редактировать</a></td>
->>>>>>> origin/master
+
                             </tr>
                             @endforeach
                             </tbody>
@@ -37,7 +35,7 @@
 
 
         </div>
-        <!-- /.container-fluid -->
+
 
     </div>
 @endsection

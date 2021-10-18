@@ -16,6 +16,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255)->nullable(false);
+            $table->foreignId('category_id',)
+                ->references('id')
+                ->on('categories');
             $table->integer('price')->default(0);
             $table->text('description')->nullable();
             $table->string('photo', 255)->nullable();
@@ -23,6 +26,16 @@ class CreateProductsTable extends Migration
             $table->timestamps();
         });
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Reverse the migrations.

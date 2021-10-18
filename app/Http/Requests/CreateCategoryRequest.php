@@ -24,34 +24,30 @@ class CreateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-<<<<<<< HEAD
+
             'name' => 'required|max:255',
 //            'title' => 'required|unique|email:rfc,dns'
         ];
     }
-=======
-            'name' =>'required|max:255',
-            'title' =>'required|email:rfc,dns',
-        ];
-    }
+//
+//'name' => 'required|max:255',
+//'title' => 'required|email:rfc,dns',];
+//}
 
->>>>>>> origin/master
-    public function messages()
+
+    public
+    function messages()
     {
         return [
             'name.required' => 'Сообщение 1',
-<<<<<<< HEAD
             'name.max' => 'Сообщение 2: max',
             //'title.email' => __('validation.email'), //из файла resources.land.validation.php
         ];
 
-    }
 
+//            'name.max' => 'Сообщение 2',
+//            'name.email' => __('validation.accepted'),
+//        ];
 
-=======
-            'name.max' => 'Сообщение 2',
-            'name.email' => __('validation.accepted'),
-        ];
     }
->>>>>>> origin/master
 }

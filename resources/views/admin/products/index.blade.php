@@ -1,13 +1,10 @@
 @extends('layouts.admin')
 @section('content')
     <div id="page-wrapper">
-
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-lg-12">
-
-                    <h2>Bordered with Striped Rows</h2>
+                    <h2>ДОБАВЛЕНИЕ И РЕДАКТИРОВАНИЕ ТОВАРОВ (tables products)</h2>
                     <div class="table-responsive">
                         <a href="{{ route('admin.products.create')  }}" class="btn btn-info">Добавить товар</a>
                         <table class="table table-bordered table-hover table-striped">
@@ -15,7 +12,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Price</th>
-                                <th>Actions</th>
+                                <th>Description</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -23,11 +20,8 @@
                             <tr>
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->price}}</td>
-<<<<<<< HEAD
+                                <td>{{$product->description}}</td>
                                 <td><a href="{{ route('admin.products.edit', ['product' => $product]) }}">Редактировать</a></td>
-=======
-                                <td><a href="{{ route('admin.products.edit', ['product' => $product -> id]) }}">Редактировать</a></td>
->>>>>>> origin/master
                             </tr>
                             @endforeach
                             </tbody>
@@ -35,10 +29,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-        <!-- /.container-fluid -->
-
-    </div>
+      </div>
 @endsection

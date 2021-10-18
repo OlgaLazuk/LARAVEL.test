@@ -3,6 +3,7 @@
 @section('content')
 
 <!-- SECTION -->
+@include('partials.flash-message')
 <div class="section">
     <!-- container -->
     <div class="container">

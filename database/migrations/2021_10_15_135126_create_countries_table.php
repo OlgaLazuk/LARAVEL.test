@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterProductsTable extends Migration
+class CreateCountriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,12 @@ class AlterProductsTable extends Migration
      * @return void
      */
     public function up()
-
     {
-//        Schema::table('products', function (Blueprint $table){
-//            $table->unsignedBigInteger('category_id')
-//                ->nullable();
-//            $table->foreign('category_id')
-//                ->references('id')
-//                ->on('categories');
-//        });
+        Schema::create('countries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 255);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -30,6 +27,6 @@ class AlterProductsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('countries');
     }
 }

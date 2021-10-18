@@ -36,6 +36,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
 </head>
 <body>
 <!-- HEADER -->
@@ -73,16 +74,22 @@
                 <!-- /LOGO -->
 
                 <!-- SEARCH BAR -->
+
+                @php
+                    $categories = \App\Models\Category::all()
+                @endphp
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form>
-                            <select class="input-select">
+                        <form method="get" action="{{route('api_search')}}">
+                            @csrf
+                            <select class="input-select" name="category">
                                 <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                @foreach($categories as $catItem)
+                                    <option value="{{$catItem->id}}">{{$catItem->name}}</option>
+                                @endforeach
                             </select>
-                            <input class="input" placeholder="Search here">
-                            <button class="search-btn">Search</button>
+                            <input class="input" type="search" name="query" required placeholder="Поиск по сайту">
+                            <button type="submit" class="search-btn">Search</button>
                         </form>
                     </div>
                 </div>
@@ -138,7 +145,7 @@
                                 </div>
                                 <div class="cart-btns">
                                     <a href="#">View Cart</a>
-                                    <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -188,6 +195,7 @@
 </nav>
 <!-- /NAVIGATION -->
 
+
 @yield('content')
 
 
@@ -203,7 +211,8 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut.</p>
                         <ul class="footer-links">
                             <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
                             <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
@@ -275,7 +284,9 @@
                     </ul>
                     <span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+                            class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                                                                target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
                 </div>
@@ -295,6 +306,7 @@
 <script src="{{asset('/js/nouislider.min.js')}}"></script>
 <script src="{{asset('/js/jquery.zoom.min.js')}}"></script>
 <script src="{{asset('/js/main.js')}}"></script>
+
 
 </body>
 </html>

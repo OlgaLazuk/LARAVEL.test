@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -39,13 +40,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
+
 //        $product = new Product();
 //        $product->fill($request->all());
 //        $product->save();
 //        return response()
 //            ->redirectToRoute('admin.products.index');
-
 
 
 //Загрузка данных(изображений)-плохая практика
@@ -59,15 +59,19 @@ class ProductController extends Controller
 
 
 //Загрузка данных(изображений)-хорошая практика
-        \Storage::putFile('test_upload', $request->file('photo'));
+        $data = $request->all();
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $photo = Storage::putFileAs('', $file, $file->getClientOriginalName());
+            $data['photo'] = $photo;
+        }
 
-=======
-        $product = new Product();
-        $product->fill($request->all());
-        $product->save();
-        return response()
-            ->redirectToRoute('admin.products.index');
->>>>>>> origin/master
+        Product::create($data);
+//        $product = new Product();
+//        $product->fill($request->all());
+//        $product->save();
+        return back();
+
     }
 
     /**

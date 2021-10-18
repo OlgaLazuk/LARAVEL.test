@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -32,17 +34,23 @@ class LoginController extends Controller
 
     public function checkLogin(Request $request)
     {
-
-
-        $user = User::query()
-            ->where('email', $request->input('email'))
-            ->where('created_at', '>', Carbon::now()->subDay(3))
-            ->firstOrFail();
-
-        if (Hash::check($request->input('password'), $user->password)) {
-            Auth::login($user);
+        $credentials = Auth::attempt($request->only(['email', 'password']));
+        if ($credentials) {
+            // аутентификация пройдена ...
+            return back()->with('success', 'Авторизация прошла успешно!');
+        } else {
+            return back()->with('error', 'Пользователь не найден!');
         }
-
     }
 
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $items = User::create($request->all());
+//        return back()->with('success','Product successfully added.');
+    }
 }
