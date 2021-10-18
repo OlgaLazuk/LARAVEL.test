@@ -64,6 +64,9 @@ Route::post('add_to_wishlist', [WishlistController::class, 'addToWishlist'])
 Route::get('wishlist', [WishlistController::class, 'showWishlist'])
     ->name('showWishlist');
 
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
+
+
 
 Route::prefix('adm')->name('admin.')
     ->middleware(CheckPassword::class)

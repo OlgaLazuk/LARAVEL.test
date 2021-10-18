@@ -10,6 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
+
     protected $fillable = ['name', 'price', 'description', 'active', 'photo'];
 
     protected $casts = [
@@ -18,20 +19,9 @@ class Product extends Model
         'created_at' => 'date:Y-m-d'
     ];
 
-    public function caregory(){
-        return $this->belongsTo(Category::class, 'category_id', 'id');
-    }
-
-
-
-
-    public function getPagePhotoAttribute()
-    {
-        if (Storage::exists($this->attributes['photo'])) {
-            return Storage::url($this->attributes['photo']);
-        }
-        return 'https://oracle-patches.com/images/2020/07/01/null-oracle_large.jpg';
-    }
+//    public function caregory(){
+//        return $this->belongsTo(Category::class, 'category_id', 'id');
+//    }
 
     public function categories()
     {
@@ -43,4 +33,14 @@ class Product extends Model
     {
         return 'name';
     }
+
+    public function getPagePhotoAttribute()
+    {
+        if (Storage::exists($this->attributes['photo'])) {
+            return Storage::url($this->attributes['photo']);
+        }
+        return 'https://cdn.shopify.com/s/files/1/0210/2968/3222/articles/trending_products_to_sell_in_India.jpg?v=1602180394';
+    }
+
+
 }

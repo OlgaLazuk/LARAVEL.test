@@ -40,7 +40,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
 
+=======
+        $data = $request->all();
+//       dd($data);
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $photo = Storage::putFileAs('', $file, $file->getClientOriginalName());
+            $data['photo'] = $photo;
+        }
+        Product::create($data);
+        return back();
+>>>>>>> origin/master
 //        $product = new Product();
 //        $product->fill($request->all());
 //        $product->save();
@@ -59,6 +71,7 @@ class ProductController extends Controller
 
 
 //Загрузка данных(изображений)-хорошая практика
+<<<<<<< HEAD
         $data = $request->all();
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
@@ -71,6 +84,16 @@ class ProductController extends Controller
 //        $product->fill($request->all());
 //        $product->save();
         return back();
+=======
+//        \Storage::putFile('test_upload', $request->file('photo'));
+//
+//
+//        $product = new Product();
+//        $product->fill($request->all());
+//        $product->save();
+//        return response()
+//            ->redirectToRoute('admin.products.index');
+>>>>>>> origin/master
 
     }
 

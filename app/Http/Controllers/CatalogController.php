@@ -15,18 +15,20 @@ class CatalogController extends Controller
         $products = Product::query()
             ->orderBy('id', 'desc')
             ->paginate();
+
 //       $session = Session::get('_token');
 //        dd($session);
         return view('catalog.catalog',
             compact('categories', 'products')
         );
+
     }
 
     public function category(Request $request, Category $category)
     {
 //        $category = Category::find($category);
 //        dump($request->all());
-//        dd('category');
+//        dd($category);
         $categories = Category::all();
         $products = Product::query()
             ->paginate();

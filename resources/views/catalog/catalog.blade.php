@@ -1,6 +1,8 @@
 @extends('layouts.shop')
 
 @section('content')
+
+
     <!-- BREADCRUMB -->
     <div id="breadcrumb" class="section">
         <!-- container -->
@@ -39,7 +41,7 @@
                                     <input type="checkbox" id="category-{{$item->id}}">
                                     <label for="category-{{$item->id}}">
                                         <span></span>
-                                        {{ $item->title }}
+                                        {{$item->title}}
                                         <small>(120)</small>
                                     </label>
                                 </div>
@@ -129,7 +131,7 @@
                         <h3 class="aside-title">Top selling</h3>
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="../../../public/img/product01.png" alt="">
+                                <img src="{{asset('/img/product01.png')}}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -142,7 +144,7 @@
 
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="../../../public/img/product02.png" alt="">
+                                <img src="{{asset('/img/product02.png')}}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -155,7 +157,7 @@
 
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="../../../public/img/product03.png" alt="">
+                                <img src="{{asset('/img/product03.png')}}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -172,8 +174,7 @@
 
                 <!-- STORE -->
                 <div id="store" class="col-md-9">
-                    <h1>{{ $category->title ?? 'Каталог товаров' }}</h1>
-
+                    <h1>{{ $category->title ?? 'Каталого товаров'}}</h1>
                     <!-- store top filter -->
                     <div class="store-filter clearfix">
                         <div class="store-sort">
@@ -199,33 +200,32 @@
                         </ul>
                     </div>
                     <!-- /store top filter -->
+
                     <!-- store products -->
                     <div class="row">
-                    @foreach($products as $product)
-                        <!-- product -->
+                        @foreach($products as $product)
+                            <div class="clearfix visible-sm visible-xs"></div>
+                            <!-- product -->
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="{{asset($product->pagePhoto)}}" alt="">
+                                        <img src="{{$product->pagePhoto}}" alt="photo">
                                     </div>
                                     <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
-                                        <h4 class="product-price">${{ $product->price }}
-                                            <del class="product-old-price">${{ $product->old_price }}</del>
+                                        <p class="product-category">{{$product->id}}</p>
+                                        <h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
+                                        <h4 class="product-price">${{$product->price}}
+                                            <del class="product-old-price">${{$product->price}}</del>
                                         </h4>
                                         <div class="product-rating">
                                         </div>
                                         <div class="product-btns">
-
-                                            <div class="add-to-wishlist">
-                                                <form action="{{route('add_to_wishlist')}}" method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                            class="tooltipp">add to wishlist</span></button>
-                                                </form>
-                                            </div>
+                                            <form action="{{route('add_to_wishlist')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}}">
+                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                    class="tooltipp">add to wishlist</span></button>
+                                            </form>
                                             <button class="add-to-compare"><i class="fa fa-exchange"></i><span
                                                     class="tooltipp">add to compare</span></button>
                                             <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
@@ -235,33 +235,22 @@
                                     <div class="add-to-cart">
                                         <form action="{{route('add_to_cart')}}" method="post">
                                             @csrf
-                                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                                            <button type="submit" class="add-to-cart-btn"><i
-                                                    class="fa fa-shopping-cart"></i> add to cart
-                                            </button>
+                                            <input type="hidden" name="product_id" value="{{$product->id}}}">
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
                             <!-- /product -->
-
-                            <div class="clearfix visible-sm visible-xs"></div>
                         @endforeach
-
                     </div>
                     <!-- /store products -->
 
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
-                        <span class="store-qty">Showing {{$products->perPage() * $products->currentPage() }}-{{$products->total()}} products</span>
+                        <span class="store-qty">Showing 20-100 products</span>
                         {{ $products->links() }}
-                        {{--                    <ul class="store-pagination">--}}
-                        {{--                        <li class="active">1</li>--}}
-                        {{--                        <li><a href="#">2</a></li>--}}
-                        {{--                        <li><a href="#">3</a></li>--}}
-                        {{--                        <li><a href="#">4</a></li>--}}
-                        {{--                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>--}}
-                        {{--                    </ul>--}}
                     </div>
                     <!-- /store bottom filter -->
                 </div>
