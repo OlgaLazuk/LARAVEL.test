@@ -17,8 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-
-//        $products = Product::query()->paginate(); ? показывает только первые 15 товаров
+//      $products = Product::query()->paginate(); ? показывает только первые 15 товаров
         return view('admin.products.index', compact('products'));
     }
 
@@ -40,9 +39,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-
-=======
         $data = $request->all();
 //       dd($data);
         if ($request->hasFile('photo')) {
@@ -52,13 +48,12 @@ class ProductController extends Controller
         }
         Product::create($data);
         return back();
->>>>>>> origin/master
+
 //        $product = new Product();
 //        $product->fill($request->all());
 //        $product->save();
 //        return response()
 //            ->redirectToRoute('admin.products.index');
-
 
 //Загрузка данных(изображений)-плохая практика
 //        $image = $request->file('photo');
@@ -69,9 +64,7 @@ class ProductController extends Controller
 //        $product->fill($data)->save();
 //        dd($rez);
 
-
 //Загрузка данных(изображений)-хорошая практика
-<<<<<<< HEAD
         $data = $request->all();
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
@@ -84,17 +77,14 @@ class ProductController extends Controller
 //        $product->fill($request->all());
 //        $product->save();
         return back();
-=======
+
 //        \Storage::putFile('test_upload', $request->file('photo'));
-//
-//
+////
 //        $product = new Product();
 //        $product->fill($request->all());
 //        $product->save();
 //        return response()
 //            ->redirectToRoute('admin.products.index');
->>>>>>> origin/master
-
     }
 
     /**
@@ -128,7 +118,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-//        $product = Product::query()->find($product);
+//      $product = Product::query()->find($product);
         $product->fill($request->all());
         $product->save();
         return response()

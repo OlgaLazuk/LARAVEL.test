@@ -198,7 +198,7 @@
                                         <p class="product-category">{{$product->id}}</p>
                                         <h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
                                         <h4 class="product-price">${{$product->price}}
-                                            <del class="product-old-price">${{$product->price}}</del>
+                                            <del class="product-old-price">${{$product->old_price}}</del>
                                         </h4>
                                         <div class="product-rating">
                                         </div>
@@ -212,8 +212,13 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart
-                                        </button>
+                                        <form action="{{route('add_to_cart')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                                cart
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

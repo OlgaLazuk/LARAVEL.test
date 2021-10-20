@@ -16,6 +16,7 @@ class CatalogController extends Controller
             ->orderBy('id', 'desc')
             ->paginate();
 
+
 //       $session = Session::get('_token');
 //        dd($session);
         return view('catalog.catalog',

@@ -45,13 +45,13 @@
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i> +375-29-330-24-22</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> lazuk81@mail.ru</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> 220000 г.Минск, ул.Тимирязева,65</a></li>
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li><a href="#"><i class="fa fa-user-o"></i> Мой аккаунт</a></li>
             </ul>
         </div>
     </div>
@@ -66,7 +66,7 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <a href="{{route('catalog')}}" class="logo">
+                        <a href="{{route('main_page')}}" class="logo">
                             <img src="{{asset('/img/logo.png')}}" alt="">
                         </a>
                     </div>
@@ -74,22 +74,22 @@
                 <!-- /LOGO -->
 
                 <!-- SEARCH BAR -->
-
                 @php
-                    $categories = \App\Models\Category::all()
+                    $categories = \App\Models\Category::all();
+                    $products = \App\Models\Product::all()
                 @endphp
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form method="get" action="{{route('api_search')}}">
+                        <form method="get" action="{{route('search')}}">
                             @csrf
-                            <select class="input-select" name="category">
-                                <option value="0">All Categories</option>
+                            <select class="input-select ">
+                                <option value="1">Все категории</option>
                                 @foreach($categories as $catItem)
-                                    <option value="{{$catItem->id}}">{{$catItem->name}}</option>
+                                    <option value="{{$catItem->id}}">{{$catItem->title}}</option>
                                 @endforeach
                             </select>
-                            <input class="input" type="search" name="query" required placeholder="Поиск по сайту">
-                            <button type="submit" class="search-btn">Search</button>
+                            <input class="input" type="search" name="search" required placeholder="Поиск по сайту">
+                            <button type="submit" class="search-btn">Поиск</button>
                         </form>
                     </div>
                 </div>
@@ -100,10 +100,10 @@
                     <div class="header-ctn">
                         <!-- Wishlist -->
                         <div>
-                            <a href="#">
+                            <a href="{{route('showWishlist')}}">
                                 <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
-                                <div class="qty">2</div>
+                                <span>Избранное</span>
+                                <div class="qty">{{$wishlistCount ?? ''}}</div>
                             </a>
                         </div>
                         <!-- /Wishlist -->
@@ -112,40 +112,33 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>Your Cart</span>
-                                <div class="qty">3</div>
+                                <span>Корзина</span>
+                                <div class="qty">{{$show ?? ''}}</div>
                             </a>
                             <div class="cart-dropdown">
                                 <div class="cart-list">
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="{{asset('/img/product01.png')}}" alt="">
+                                    @foreach($products as $product)
+                                        <div class="product-widget">
+                                            <div class="product-img">
+                                                <img src="{{$product->pagePhoto}}" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
+                                                <h4 class="product-price"><span
+                                                        class="qty">1x</span>${{$product->price}}</h4>
+                                            </div>
+                                            <button class="delete"><i class="fa fa-close"></i></button>
                                         </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
+                                    @endforeach
 
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="{{asset('/img/product02.png')}}" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
                                 </div>
                                 <div class="cart-summary">
                                     <small>3 Item(s) selected</small>
                                     <h5>SUBTOTAL: $2940.00</h5>
                                 </div>
                                 <div class="cart-btns">
-                                    <a href="#">View Cart</a>
-                                    <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="{{route('showCart')}}">Корзина</a>
+                                    <a href="{{route('showCart')}}">Оформить<i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +148,7 @@
                         <div class="menu-toggle">
                             <a href="#">
                                 <i class="fa fa-bars"></i>
-                                <span>Menu</span>
+                                <span>Меню</span>
                             </a>
                         </div>
                         <!-- /Menu Toogle -->
@@ -179,13 +172,12 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Hot Deals</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="{{route('catalog_category', ['category'=> 3])}}">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Cameras</a></li>
-                <li><a href="#">Accessories</a></li>
+                <li class="active"><a href="{{route('main_page')}}">Главная страница</a></li>
+                <li><a href="#">Горячие предложения</a></li>
+                <li><a href="{{route('catalog')}}">Каталог товаров</a></li>
+                <li><a href="{{route('catalog_category', ['category'=> 3])}}">Кондиционеры
+                    </a></li>
+                <li><a href="{{route('catalog_category', ['category'=> 18])}}">Аксессуары</a></li>
             </ul>
             <!-- /NAV -->
         </div>

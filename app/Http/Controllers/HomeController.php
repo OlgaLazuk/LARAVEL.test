@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-
     /**
      * Show the application dashboard.
      *
@@ -19,9 +18,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        $product = Product::first();
-//        $categories = Category::find(1);
-//        dd($categories->products);
+        $products = Product::query()
+            ->limit (8)
+            ->inRandomOrder()
+            ->get();
+
 
 //        $brands = Brand::with('country')->get();
 
@@ -36,7 +37,7 @@ class HomeController extends Controller
 
         $categories = Category::all();
 
-        return view('home.main', compact('categories'));
+        return view('home.main', compact('categories', 'products'));
     }
 
     public function random()
@@ -46,11 +47,12 @@ class HomeController extends Controller
             ->limit(10)
             ->get();
 //dd($products);
-        return view('home.main');
+        return view('home.main', compact('products'));
     }
 
     public function search(Request $request)
     {
+        $categories = Category::all();
         $search = $request->get('search');
         $products = Product::query()
             ->where('name', 'LIKE', '%' . $search . '%')
@@ -59,7 +61,7 @@ class HomeController extends Controller
         if (!empty($products)) {
 //            Session::flash('success', 'Product not found!');
 
-            return view('search', compact('products'));
+            return view('search', compact('products', 'categories'));
         }
     }
 

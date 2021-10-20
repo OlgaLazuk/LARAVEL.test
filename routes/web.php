@@ -27,9 +27,7 @@ Route::get('/', [HomeController::class, 'index'])
 Route::get('search', [HomeController::class, 'search'])
     ->name('search');
 
-Route::get('random', [HomeController::class, 'random'])
-    ->name('random')//    ->middleware([CheckPassword::class])
-;
+//Route::get('random', [HomeController::class, 'random'])->name('random')->middleware([CheckPassword::class]);
 
 
 Route::get('register', [LoginController::class, 'register'])
@@ -66,7 +64,8 @@ Route::get('wishlist', [WishlistController::class, 'showWishlist'])
 
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
 
-
+Route::post('/delete_to_cart/{id}',[CartController::class,'destroy'])
+    ->name('delete_to_cart');
 
 Route::prefix('adm')->name('admin.')
     ->middleware(CheckPassword::class)
